@@ -1,4 +1,4 @@
-# [HTMLComb](http://fengyuanchen.github.io/htmlcomb)
+# HTMLComb
 
 HTML attributes formatter.
 
