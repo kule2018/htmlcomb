@@ -1,0 +1,33 @@
+{
+  "name": "htmlcomb",
+  "description": "HTML attributes formatter.",
+  "version": "0.1.0",
+  "main": [
+    "dist/htmlcomb.js"
+  ],
+  "keywords": [
+    "html",
+    "comb",
+    "format",
+    "javacript",
+    "front-end",
+    "web",
+    "development"
+  ],
+  "homepage": "https://github.com/fengyuanchen/htmlcomb",
+  "authors": [
+    "Fengyuan Chen"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build",
+    "release",
+    "demos",
+    "docs"
+  ]
+}
