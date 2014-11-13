@@ -1,5 +1,5 @@
 /*!
- * Cropper v0.1.0
+ * htmlcomb v0.1.1
  * https://github.com/fengyuanchen/htmlcomb
  *
  * Copyright 2014 Fengyuan Chen
@@ -10,10 +10,10 @@
 
   "use strict";
 
-  var STRING_UNDEFINED = "undefined",
-
-      HTMLComb = function (options) {
+  var HTMLComb = function (options) {
         this.defaults = util.extend({}, HTMLComb.DEFAULTS, options);
+        this.source = "";
+        this.result = "";
       },
 
       util;
@@ -48,29 +48,42 @@
   HTMLComb.prototype = {
     constructor: HTMLComb,
 
-    format: function (html, options, callback) {
-      if (typeof html !== "string") {
-        return html;
+    setup: function (options) {
+      if (typeof options === "object") {
+        util.extend(this.defaults, options);
+      }
+    },
+
+    format: function (source, options, callback) {
+      var result;
+
+      if (typeof source !== "string") {
+        throw new Error("The first parameter for `format` method must be a string.");
       }
 
-      if (typeof callback === "undefined" && typeof options === "function") {
+      this.source = source;
+
+      if (typeof options === "object") {
+        util.extend(this.defaults, options);
+      } else if (typeof options === "function" && typeof callback === "undefined") {
         callback = options;
-        options = null;
       }
 
-      if (options) {
-        this.defaults = util.extend({}, HTMLComb.DEFAULTS, options);
-      }
-
-      html = html.replace(/<(\w+)\s([^<]+)>/g, util.proxy(function (tag, tagName, attrs) {
+      result = source.replace(/<(\w+)\s([^<]+)>/g, util.proxy(function (tag, tagName, attrs) {
         return ("<" + tagName + " " + this.sort(attrs) + ">");
       }, this));
 
+      this.result = result;
+
       if (typeof callback === "function") {
-        callback.call(this, html);
+        callback.call(this, result);
       }
 
-      return html;
+      return result;
+    },
+
+    comb: function () {
+      return this.format.apply(this, util.toArray(arguments));
     },
 
     sort: function (attrs) {
@@ -88,7 +101,7 @@
           if (attr.substr(0, attrName.length) === attrName) {
             matched = true;
 
-            if (typeof matchedAttrs[i] === STRING_UNDEFINED) {
+            if (typeof matchedAttrs[i] === "undefined") {
               matchedAttrs[i] = [];
             }
 
@@ -135,7 +148,7 @@
 
             attr = attr.split("=");
 
-            if (typeof attr[1] !== STRING_UNDEFINED) {
+            if (typeof attr[1] !== "undefined") {
               firstLetter = attr[1].charAt(0);
 
               if (firstLetter === "'" && defaults.replaceSingleQuotationMarks) { // Replases ' to "
@@ -221,23 +234,27 @@
     }
   };
 
+
+  // Extend prototype
+  // ---------------------------------------------------------------------------
+
   util.extend(HTMLComb.prototype, util);
 
 
   // Define and export
   // ---------------------------------------------------------------------------
 
-  if (typeof window !== STRING_UNDEFINED) {
+  if (typeof window !== "undefined") {
     window.HTMLComb = HTMLComb;
   }
 
-  if (typeof define !== STRING_UNDEFINED && define.amd) {
-    define([], function () {
+  if (typeof define === "function" && define.amd) {
+    define("htmlcomb", [], function () {
       return HTMLComb;
     });
   }
 
-  if (typeof module !== STRING_UNDEFINED) {
+  if (typeof module === "object") {
     module.exports = HTMLComb;
   }
 

@@ -1,6 +1,6 @@
-# HTMLComb
+# [HTMLComb](https://github.com/fengyuanchen/htmlcomb)
 
-HTML attributes formatter.
+A simple tool for combing HTML attributes.
 
 
 # Main
@@ -8,7 +8,7 @@ HTML attributes formatter.
 ```
 dist/
 ├── dist/htmlcomb.js      (6 KB)
-└── dist/htmlcomb.min.js  (2 KB)
+└── dist/htmlcomb.min.js  (3 KB)
 ```
 
 
@@ -21,27 +21,43 @@ Four quick start options are available:
 - [Download the latest release](https://github.com/fengyuanchen/htmlcomb/archive/master.zip).
 - Clone the repository: `git clone https://github.com/fengyuanchen/htmlcomb.git`.
 - Install with [NPM](http://npmjs.org): `npm install htmlcomb`.
-- Install with [Bower](http://bower.io): `bower install htmlcomb`.
 
 
 ## Usage
 
+### Browser
+
+```html
+<script src="/path/to/htmlcomb.js"></script>
+```
+
+```javascript
+var htmlcomb = new HTMLComb(options);
+
+htmlcomb.comb(source, function (result) {
+  console.log(result);
+});
+```
+
+
+### NodeJS
+
 ```javascript
 var fs = require("fs"),
     HTMLComb = require("htmlcomb"),
-    htmlcomb = new HTMLComb();
+    htmlcomb = new HTMLComb(options);
 
 fs.readFile("/path/to/source.html", function(err, data) {
   if (err) {
     throw err;
   }
 
-  fs.writeFile("/path/to/result.html", htmlcomb.format(data.toString(), function () {
-    console.log("Done, without errors.");
-  }), function (err) {
+  fs.writeFile("/path/to/result.html", htmlcomb.comb(data.toString()), function (err) {
     if (err) {
       throw err;
     }
+
+    console.log("Done, without errors.");
   });
 });
 ```
@@ -51,8 +67,8 @@ fs.readFile("/path/to/source.html", function(err, data) {
 
 #### requireDoubleQuotationMarks
 
-- type: boolean
-- default: `true`
+- Type: `Boolean`
+- Default: `true`
 
 For example:
 ```html
@@ -66,8 +82,8 @@ For example:
 
 #### replaceSingleQuotationMarks
 
-- type: boolean
-- default: `true`
+- Type: `Boolean`
+- Default: `true`
 
 For example:
 ```html
@@ -81,8 +97,8 @@ For example:
 
 #### removeEmptyValue
 
-- type: boolean
-- default: `true`
+- Type: `Boolean`
+- Default: `true`
 
 For example:
 ```html
@@ -96,8 +112,8 @@ For example:
 
 #### order
 
-- type: array
-- default:
+- Type: `Array`
+- Default:
 ```javascript
 [
   "class",
@@ -121,18 +137,28 @@ The default order references to the [Code Guide](http://codeguide.co/)'s [attrib
 For example:
 ```html
 <!-- Source -->
-<input value="example@mail.com" required class="input-email" type="email" id="inputEmail" data-remote="validate.php" name="email">
+<input value="example@mail.com" required class="input-email" type="email" id="inputEmail" name="email">
 
 <!-- Result -->
-<input class="input-email" id="inputEmail" name="email" data-remote="validate.php" type="email" value="example@mail.com" required>
+<input class="input-email" id="inputEmail" name="email" type="email" value="example@mail.com" required>
 ```
 
 
 ## Methods
 
-#### .format(html[, options[, callback]])
+#### setup(options)
 
-Format html source.
+- Param: object
+
+Change the default options.
+
+
+#### format(source[, options[, callback]])
+
+- Alias: comb
+- Usage: `format(source)` or `format(source, options)` or `format(source, callback)` or `format(source, options, callback)`
+
+Format source HTML attributes.
 
 
 ## [License](https://github.com/fengyuanchen/htmlcomb/blob/master/LICENSE.md)

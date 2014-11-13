@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
     banner: "/*!\n" +
-            " * Cropper v<%= pkg.version %>\n" +
+            " * <%= pkg.name %> v<%= pkg.version %>\n" +
             " * <%= pkg.homepage %>\n" +
             " *\n" +
             " * Copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>\n" +
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     clean: {
       dist: ["dist"],
       build: ["build/<%= pkg.version %>.<%= grunt.template.today('yyyymmdd') %>"],
-      release: ["release/<%= pkg.version %>"]
+      release: ["releases/<%= pkg.version %>"]
     },
     jshint: {
       options: {
@@ -60,9 +60,12 @@ module.exports = function (grunt) {
         expand: true,
         cwd: "dist",
         src: "**",
-        dest: "release/<%= pkg.version %>",
+        dest: "releases/<%= pkg.version %>",
         filter: "isFile"
       }
+    },
+    nodeunit: {
+      files: ["test/*.js"]
     },
     watch: {
       files: [
@@ -77,5 +80,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", ["clean:build", "copy:build"]);
   grunt.registerTask("release", ["clean:release", "copy:release"]);
-  grunt.registerTask("default", ["clean:dist", "jshint", "jscs", "uglify", "copy:dist", "usebanner", "build", "release"]);
+  grunt.registerTask("default", ["clean:dist", "nodeunit", "jshint", "jscs", "uglify", "copy:dist", "usebanner", "build", "release"]);
 };

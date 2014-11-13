@@ -1,10 +1,8 @@
 {
   "name": "htmlcomb",
-  "description": "HTML attributes formatter.",
-  "version": "0.1.0",
-  "main": [
-    "dist/htmlcomb.js"
-  ],
+  "description": "A simple tool for combing HTML attributes.",
+  "version": "0.1.1",
+  "main": "dist/htmlcomb.js",
   "keywords": [
     "html",
     "comb",
@@ -37,6 +35,7 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-jscs": "~0.7.1",
     "load-grunt-tasks": "~0.6.0"
