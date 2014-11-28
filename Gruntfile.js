@@ -14,7 +14,8 @@ module.exports = function (grunt) {
     clean: {
       dist: ["dist"],
       build: ["build/<%= pkg.version %>.<%= grunt.template.today('yyyymmdd') %>"],
-      release: ["releases/<%= pkg.version %>"]
+      release: ["releases/<%= pkg.version %>"],
+      docs: ["docs/dist"]
     },
     jshint: {
       options: {
@@ -62,6 +63,13 @@ module.exports = function (grunt) {
         src: "**",
         dest: "releases/<%= pkg.version %>",
         filter: "isFile"
+      },
+      docs: {
+        expand: true,
+        cwd: "dist/",
+        src: "*.js",
+        dest: "docs/dist/",
+        filter: "isFile"
       }
     },
     nodeunit: {
@@ -80,5 +88,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", ["clean:build", "copy:build"]);
   grunt.registerTask("release", ["clean:release", "copy:release"]);
-  grunt.registerTask("default", ["clean:dist", "nodeunit", "jshint", "jscs", "uglify", "copy:dist", "usebanner", "build", "release"]);
+  grunt.registerTask("docs", ["clean:docs", "copy:docs"]);
+  grunt.registerTask("default", ["clean:dist", "nodeunit", "jshint", "jscs", "uglify", "copy:dist", "usebanner", "build", "release", "docs"]);
 };

@@ -1,7 +1,7 @@
 {
   "name": "htmlcomb",
   "description": "A simple tool for combing HTML attributes.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/htmlcomb.js",
   "keywords": [
     "html",

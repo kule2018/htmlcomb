@@ -61,7 +61,7 @@
         callback = options;
       }
 
-      result = source.replace(/<(\w+)\s([^<]+)>/g, util.proxy(function (tag, tagName, attrs) {
+      result = source.replace(/<(\w+)\s([^<>]+)>/g, util.proxy(function (tag, tagName, attrs) {
         return ("<" + tagName + " " + this.sort(attrs) + ">");
       }, this));
 

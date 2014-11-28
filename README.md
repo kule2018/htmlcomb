@@ -34,7 +34,7 @@ Four quick start options are available:
 ```javascript
 var htmlcomb = new HTMLComb(options);
 
-htmlcomb.comb(source, function (result) {
+htmlcomb.format(source, function (result) {
   console.log(result);
 });
 ```
@@ -52,7 +52,7 @@ fs.readFile("/path/to/source.html", function(err, data) {
     throw err;
   }
 
-  fs.writeFile("/path/to/result.html", htmlcomb.comb(data.toString()), function (err) {
+  fs.writeFile("/path/to/result.html", htmlcomb.format(data.toString()), function (err) {
     if (err) {
       throw err;
     }

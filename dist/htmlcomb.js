@@ -1,5 +1,5 @@
 /*!
- * htmlcomb v0.1.1
+ * htmlcomb v0.1.2
  * https://github.com/fengyuanchen/htmlcomb
  *
  * Copyright 2014 Fengyuan Chen
@@ -69,7 +69,7 @@
         callback = options;
       }
 
-      result = source.replace(/<(\w+)\s([^<]+)>/g, util.proxy(function (tag, tagName, attrs) {
+      result = source.replace(/<(\w+)\s([^<>]+)>/g, util.proxy(function (tag, tagName, attrs) {
         return ("<" + tagName + " " + this.sort(attrs) + ">");
       }, this));
 
