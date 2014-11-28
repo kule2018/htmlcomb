@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple tool for combing HTML attributes.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, html format, web development">
+    <meta name="author" content="Fengyuan Chen">
+    <title>HTMLComb</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header">HTMLComb <small>A simple tool for combing HTML attributes.</small></h1>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <h2>Source: <span id="sourceLength"></span></h2>
+          <textarea class="form-control" id="source" rows="20">&lt;input id=inputEmail required type='email' name=&quot;email&quot; class=&quot;&quot; value=&gt;</textarea>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <h2>Result: <span id="resultLength"></span></h2>
+          <textarea class="form-control" id="result" rows="20"></textarea>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="dist/htmlcomb.min.js"></script>
+    <script>
+      $(function () {
+        var $source = $("#source"),
+            $result = $("#result"),
+            htmlcomb = new HTMLComb(),
+            format = function () {
+              htmlcomb.format($source.val(), function (result) {
+                $result.val(result);
+              });
+            };
+
+        format();
+        $source.on("change", format);
+      });
+    </script>
+  </body>
+</html>
