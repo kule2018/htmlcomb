@@ -2,6 +2,8 @@
 
 A simple tool for combing HTML attributes.
 
+- [Demo](http://fengyuanchen.github.io/htmlcomb)
+
 
 # Main
 
