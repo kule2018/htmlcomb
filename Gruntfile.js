@@ -70,6 +70,10 @@ module.exports = function (grunt) {
         src: "*.js",
         dest: "docs/dist/",
         filter: "isFile"
+      },
+      others: {
+        src: "README.md",
+        dest: "docs/"
       }
     },
     nodeunit: {
@@ -88,6 +92,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", ["clean:build", "copy:build"]);
   grunt.registerTask("release", ["clean:release", "copy:release"]);
-  grunt.registerTask("docs", ["clean:docs", "copy:docs"]);
+  grunt.registerTask("docs", ["clean:docs", "copy:docs", "copy:others"]);
   grunt.registerTask("default", ["clean:dist", "nodeunit", "jshint", "jscs", "uglify", "copy:dist", "usebanner", "build", "release", "docs"]);
 };
