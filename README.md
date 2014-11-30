@@ -18,7 +18,7 @@ dist/
 
 ## Quick start
 
-Four quick start options are available:
+Three quick start options are available:
 
 - [Download the latest release](https://github.com/fengyuanchen/htmlcomb/archive/master.zip).
 - Clone the repository: `git clone https://github.com/fengyuanchen/htmlcomb.git`.
