@@ -1,8 +1,16 @@
 # Changelog
 
+### 0.2.0 (Dec 12, 2014)
+
+- Supports more browsers.
+- Add 2 options: "removeNewlines", "removeMultipleSpaces".
+- Rename "removeEmptyValue" option to "removeEmptyValues".
+- Remove "options" parameter of "format" method.
+
+
 ### 0.1.2 (Nov 28, 2014)
 
-- Fix a bug
+- Improves the "format" method.
 
 
 ### 0.1.1 (Nov 13, 2014)

@@ -5,15 +5,6 @@ A simple tool for combing HTML attributes.
 - [Demo](http://fengyuanchen.github.io/htmlcomb)
 
 
-# Main
-
-```
-dist/
-├── dist/htmlcomb.js      (6 KB)
-└── dist/htmlcomb.min.js  (3 KB)
-```
-
-
 # Getting started
 
 ## Quick start
@@ -97,7 +88,7 @@ For example:
 ```
 
 
-#### removeEmptyValue
+#### removeEmptyValues
 
 - Type: `Boolean`
 - Default: `true`
@@ -105,10 +96,45 @@ For example:
 For example:
 ```html
 <!-- Source -->
-<div id=""></div>
+<div class="     " id=""></div>
 
 <!-- Result -->
-<div id></div>
+<div class id></div>
+```
+
+
+#### removeNewlines
+
+- Type: `Boolean`
+- Default: `true`
+
+Also removes the indentation after the newline.
+
+For example:
+```html
+<!-- Source -->
+<div data-search="{
+  'url': 'https://github.com/search',
+  'q': 'htmlcomb'
+}"></div>
+
+<!-- Result -->
+<div data-search="{ 'url': 'https://github.com/search', 'q': 'htmlcomb'}"></div>
+```
+
+
+#### removeMultipleSpaces
+
+- Type: `Boolean`
+- Default: `true`
+
+For example:
+```html
+<!-- Source -->
+<div class="foo   bar     baz"></div>
+
+<!-- Result -->
+<div class="foo bar baz"></div>
 ```
 
 
@@ -139,10 +165,10 @@ The default order references to the [Code Guide](http://codeguide.co/)'s [attrib
 For example:
 ```html
 <!-- Source -->
-<input value="example@mail.com" required class="input-email" type="email" id="inputEmail" name="email">
+<input required class="input-email" type="email" id="inputEmail" name="email">
 
 <!-- Result -->
-<input class="input-email" id="inputEmail" name="email" type="email" value="example@mail.com" required>
+<input class="input-email" id="inputEmail" name="email" type="email" required>
 ```
 
 
@@ -150,17 +176,32 @@ For example:
 
 #### setup(options)
 
-- Param: object
+Params | Type | Description
+------ | ---- | -----------
+options | `Object` | Custom options
 
 Change the default options.
 
 
-#### format(source[, options[, callback]])
+#### format(source[, callback]])
 
 - Alias: comb
-- Usage: `format(source)` or `format(source, options)` or `format(source, callback)` or `format(source, options, callback)`
+
+Params | Type | Description
+------ | ---- | -----------
+source | `String` | The source text for combing,
+callback | `Function` | For example: `function (result) {}`
 
 Format source HTML attributes.
+
+
+## Browser Support
+
+- Chrome 36+
+- Firefox 31+
+- Internet Explorer 8+
+- Opera 21+
+- Safari 5.1+
 
 
 ## [License](https://github.com/fengyuanchen/htmlcomb/blob/master/LICENSE.md)
