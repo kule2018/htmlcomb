@@ -7,13 +7,17 @@
 </head>
 <body>
 
-  <input required="     " class="input     email" value='example@mail.com' type="email" id=inputEmail name="email" data-options="{
-    'separator': '@',
-    'suffixes': [
-      'gmail.com',
-      'hotmail.com'
-    ]
-  }" readonly=     >
+  <form action="remote.json" class="form" method="post" role="form">
+    <label for="inputEmail" class="label">Email:</label>
+    <input required="     " class="input     email" value='example@mail.com' type="email" id=inputEmail name="email" data-options="{
+      'separator': '@',
+      'suffixes': [
+        'gmail.com',
+        'hotmail.com'
+      ]
+    }" readonly=     >
+    <button type="submit" class="button">Submit</button>
+  </form>
 
 </body>
 </html>
