@@ -1,0 +1,12 @@
+# Files to ignore
+
+test
+docs
+Gruntfile.js
+.jshintrc
+.jscsrc
+.csslintrc
+.gitignore
+.gitattributes
+.editorconfig
+_*
