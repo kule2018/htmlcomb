@@ -2,10 +2,10 @@
  * HTMLComb v0.2.0
  * https://github.com/fengyuanchen/htmlcomb
  *
- * Copyright 2014 Fengyuan Chen
+ * Copyright (c) 2014-2015 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2014-12-12T14:45:37.862Z
+ * Date: 2015-03-16T09:36:20.132Z
  */
 
 (function () {
