@@ -25,7 +25,7 @@
   */
 
   module.exports = {
-    default_options: {
+    defaultOptions: {
       requireDoubleQuotationMarks: function(test) {
         test.expect(1);
         test.equal(htmlcomb.comb('<div id=main></div>'), '<div id="main"></div>');
@@ -57,7 +57,7 @@
         test.done();
       }
     },
-    custom_options: {
+    customOptions: {
       requireDoubleQuotationMarks: function(test) {
         htmlcomb.setup({
           requireDoubleQuotationMarks: false

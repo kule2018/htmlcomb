@@ -4,11 +4,12 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    today: grunt.template.today('yyyymmdd'),
 
     clean: {
       dist: ['dist'],
-      build: ['build/<%= pkg.version %>.<%= grunt.template.today(\'yyyymmdd\') %>'],
-      release: ['releases/<%= pkg.version %>'],
+      cache: ['_caches/<%= pkg.version %>+<%= today %>'],
+      release: ['_releases/<%= pkg.version %>'],
       site: ['_gh_pages']
     },
 
@@ -103,23 +104,17 @@ module.exports = function (grunt) {
         src: 'src/*.js',
         dest: 'dist'
       },
-      build: {
+      cache: {
         expand: true,
         flatten: true,
         src: 'dist/*.js',
-        dest: 'build/<%= pkg.version %>.<%= grunt.template.today("yyyymmdd") %>'
+        dest: '_caches/<%= pkg.version %>+<%= today %>'
       },
       release: {
         expand: true,
         flatten: true,
         src: 'dist/*.js',
-        dest: 'releases/<%= pkg.version %>'
-      },
-      docs: {
-        expand: true,
-        flatten: true,
-        src: 'dist/*.js',
-        dest: 'docs/js/'
+        dest: '_releases/<%= pkg.version %>'
       },
       site: {
         expand: true,
@@ -148,5 +143,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('site', ['clean:site', 'uglify:site', 'copy:site', 'csslint', 'cssmin', 'copy:html', 'htmlmin']);
 
-  grunt.registerTask('default', ['clean', 'jshint', 'jscs', 'nodeunit', 'uglify:dist', 'copy:dist', 'replace', 'copy:build', 'copy:release', 'copy:docs']);
+  grunt.registerTask('default', ['clean', 'jshint', 'jscs', 'nodeunit', 'uglify:dist', 'copy:dist', 'replace', 'copy:cache', 'copy:release']);
 };
