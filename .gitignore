@@ -1,11 +1,4 @@
 # Files to ignore
 
 node_modules
-bower_components
-_gh_pages
-test
-tests
-build
-releases
-demos
-docs
+_*
