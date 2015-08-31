@@ -69,6 +69,9 @@
       if (typeof options === 'object') {
         util.extend(this.defaults, options);
       }
+
+      // Return `this` to allow chain composition
+      return this;
     },
 
     format: function (source, callback) {
