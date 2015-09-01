@@ -271,10 +271,10 @@
   };
 
 
-  // Extend prototype
+  // Register static methods
   // ---------------------------------------------------------------------------
 
-  util.extend(HTMLComb.prototype, util);
+  util.extend(HTMLComb, util);
 
 
   // Define and export
