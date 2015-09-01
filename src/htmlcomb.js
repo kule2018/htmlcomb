@@ -74,11 +74,17 @@
       return this;
     },
 
-    format: function (source, callback) {
+    format: function (source, options, callback) {
       var result;
 
       if (typeof source !== 'string') {
         throw new Error('The first parameter for "format" method must be a string.');
+      }
+
+      if (typeof options === "object") {
+        this.setup(options);
+      } else if (typeof options === "function" && typeof callback === "undefined") {
+        callback = options;
       }
 
       this.source = source;
