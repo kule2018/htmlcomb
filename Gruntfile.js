@@ -8,7 +8,6 @@ module.exports = function (grunt) {
 
     clean: {
       dist: ['dist'],
-      cache: ['_caches/<%= pkg.version %>+<%= today %>'],
       release: ['_releases/<%= pkg.version %>'],
       site: ['_gh_pages']
     },
@@ -72,6 +71,9 @@ module.exports = function (grunt) {
             match: 'VERSION',
             replacement: '<%= pkg.version %>'
           }, {
+            match: 'YEAR',
+            replacement: new Date().getFullYear()
+          }, {
             match: 'DATE',
             replacement: new Date().toISOString()
           }]
@@ -103,12 +105,6 @@ module.exports = function (grunt) {
         flatten: true,
         src: 'src/*.js',
         dest: 'dist'
-      },
-      cache: {
-        expand: true,
-        flatten: true,
-        src: 'dist/*.js',
-        dest: '_caches/<%= pkg.version %>+<%= today %>'
       },
       release: {
         expand: true,
@@ -143,5 +139,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('site', ['clean:site', 'uglify:site', 'copy:site', 'csslint', 'cssmin', 'copy:html', 'htmlmin']);
 
-  grunt.registerTask('default', ['clean', 'jshint', 'jscs', 'nodeunit', 'uglify:dist', 'copy:dist', 'replace', 'copy:cache', 'copy:release']);
+  grunt.registerTask('default', ['clean', 'jshint', 'jscs', 'nodeunit', 'uglify:dist', 'copy:dist', 'replace', 'copy:release']);
 };
