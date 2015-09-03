@@ -42,6 +42,8 @@
     removeMultipleSpaces: true,
     removeEmptyValues: true,
     removeNewlines: true,
+
+    // http://codeguide.co/#html-attribute-order
     order: [
       'class',
       'id',
@@ -54,8 +56,8 @@
       'value',
       'title',
       'alt',
-      'aria',
-      'role'
+      'role',
+      'aria'
     ]
   };
 
