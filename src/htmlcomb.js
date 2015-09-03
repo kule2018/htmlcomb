@@ -28,9 +28,11 @@
   var util;
 
   function HTMLComb(options) {
-    this.defaults = util.extend({}, HTMLComb.DEFAULTS, options);
+    this.initialOptions = util.extend({}, HTMLComb.DEFAULTS);
+    this.options = {};
     this.source = '';
     this.result = '';
+    this.setup(options);
   }
 
   // Defaults
@@ -67,9 +69,15 @@
   HTMLComb.prototype = {
     constructor: HTMLComb,
 
-    setup: function (options) {
+    setup: function (options, _temporary) {
       if (typeof options === 'object') {
-        util.extend(this.defaults, options);
+        if (!_temporary) {
+          util.extend(this.initialOptions, options);
+        }
+
+        util.extend(this.options, this.initialOptions, options);
+      } else {
+        this.options = util.extend({}, this.initialOptions);
       }
 
       // Return `this` to allow chain composition
@@ -77,15 +85,17 @@
     },
 
     format: function (source, options, callback) {
+      var hasOptions = false;
       var result;
 
       if (typeof source !== 'string') {
         throw new Error('The first parameter for "format" method must be a string.');
       }
 
-      if (typeof options === "object") {
-        this.setup(options);
-      } else if (typeof options === "function" && typeof callback === "undefined") {
+      if (typeof options === 'function') {
+        hasOptions = true;
+        this.setup(options, true);
+      } else if (typeof options === 'function' && typeof callback === 'undefined') {
         callback = options;
       }
 
@@ -94,6 +104,10 @@
       result = source.replace(REGEXP_ELEMENT_TAGS, util.proxy(function (tag, tagName, attrs) {
         return ('<' + tagName + ' ' + this.sort(attrs) + '>');
       }, this));
+
+      if (hasOptions) {
+        this.setup();
+      }
 
       this.result = result;
 
@@ -109,7 +123,7 @@
     },
 
     sort: function (attrs) {
-      var order = this.defaults.order;
+      var order = this.options.order;
       var sortedAttrs = [];
       var matchedAttrs = [];
       var others = [];
@@ -158,7 +172,7 @@
     },
 
     split: function (attrs) {
-      var defaults = this.defaults;
+      var options = this.options;
       var matched = [];
 
       if (typeof attrs === 'string') {
@@ -176,26 +190,26 @@
               firstLetter = attr[1].charAt(0);
 
 
-              if (firstLetter === '\'' && defaults.replaceSingleQuotationMarks) {
+              if (firstLetter === '\'' && options.replaceSingleQuotationMarks) {
 
                 // Replases ' to "
                 attr[1] = '"' + attr[1].replace(REGEXP_SINGLE_QUOTATION_MARKS, '$1').replace(REGEXP_DOUBLE_QUOTATION_MARKS, '&quot;') + '"';
-              } else if (firstLetter !== '"' && defaults.requireDoubleQuotationMarks) {
+              } else if (firstLetter !== '"' && options.requireDoubleQuotationMarks) {
 
                 // Adds "
                 attr[1] = '"' + attr[1] + '"';
               }
 
               // Removes newlines first
-              if (defaults.removeNewlines) {
+              if (options.removeNewlines) {
                 attr[1] = attr[1].replace(REGEXP_NEWLINES, '');
               }
 
-              if (defaults.removeMultipleSpaces) {
+              if (options.removeMultipleSpaces) {
                 attr[1] = attr[1].replace(REGEXP_MULTIPLE_SPACES, '$1');
               }
 
-              if (REGEXP_EMPTY_VALUES.test(attr[1]) && defaults.removeEmptyValues) {
+              if (REGEXP_EMPTY_VALUES.test(attr[1]) && options.removeEmptyValues) {
                 attr.pop();
               }
             }
