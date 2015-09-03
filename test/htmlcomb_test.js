@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var HTMLComb = require('../src/htmlcomb'),
-      htmlcomb = new HTMLComb();
+  var HTMLComb = require('../src/htmlcomb');
+  var htmlcomb = new HTMLComb();
 
   /*
     ======== A Handy Little Nodeunit Reference ========
