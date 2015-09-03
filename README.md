@@ -5,9 +5,10 @@ A simple tool for combing HTML attributes.
 - [Demo](http://fengyuanchen.github.io/htmlcomb)
 
 
-# Getting started
 
-## Quick start
+## Getting started
+
+### Quick start
 
 Three quick start options are available:
 
@@ -16,15 +17,15 @@ Three quick start options are available:
 - Install with [NPM](http://npmjs.org): `npm install htmlcomb`.
 
 
-## Usage
+### Usage
 
-### Browser
+#### Browser
 
 ```html
 <script src="/path/to/htmlcomb.js"></script>
 ```
 
-```javascript
+```js
 var htmlcomb = new HTMLComb(options);
 
 htmlcomb.format(source, function (result) {
@@ -33,12 +34,12 @@ htmlcomb.format(source, function (result) {
 ```
 
 
-### NodeJS
+#### NodeJS
 
-```javascript
-var fs = require("fs"),
-    HTMLComb = require("htmlcomb"),
-    htmlcomb = new HTMLComb(options);
+```js
+var fs = require("fs");
+var HTMLComb = require("htmlcomb");
+var htmlcomb = new HTMLComb(options);
 
 fs.readFile("/path/to/source.html", function(err, data) {
   if (err) {
@@ -56,6 +57,7 @@ fs.readFile("/path/to/source.html", function(err, data) {
 ```
 
 
+
 ## Options
 
 #### requireDoubleQuotationMarks
@@ -64,6 +66,7 @@ fs.readFile("/path/to/source.html", function(err, data) {
 - Default: `true`
 
 For example:
+
 ```html
 <!-- Source -->
 <div id=main></div>
@@ -79,6 +82,7 @@ For example:
 - Default: `true`
 
 For example:
+
 ```html
 <!-- Source -->
 <div id='main'></div>
@@ -94,6 +98,7 @@ For example:
 - Default: `true`
 
 For example:
+
 ```html
 <!-- Source -->
 <div class="     " id=""></div>
@@ -111,6 +116,7 @@ For example:
 Also removes the indentation after the newline.
 
 For example:
+
 ```html
 <!-- Source -->
 <div data-search="{
@@ -129,6 +135,7 @@ For example:
 - Default: `true`
 
 For example:
+
 ```html
 <!-- Source -->
 <div class="foo   bar     baz"></div>
@@ -142,7 +149,7 @@ For example:
 
 - Type: `Array`
 - Default:
-```javascript
+```js
 [
   "class",
   "id",
@@ -155,14 +162,15 @@ For example:
   "value",
   "title",
   "alt",
-  "aria",
-  "role"
+  "role",
+  "aria"
 ]
 ```
 
 The default order references to the [Code Guide](http://codeguide.co/)'s [attribute order](http://codeguide.co/#html-attribute-order).
 
 For example:
+
 ```html
 <!-- Source -->
 <input required class="input-email" type="email" id="inputEmail" name="email">
@@ -172,38 +180,42 @@ For example:
 ```
 
 
+
 ## Methods
 
 #### setup(options)
 
-Params | Type | Description
------- | ---- | -----------
-options | `Object` | Custom options
+Parameters  | Type     | Description
+----------- | -------- | --------------
+options     | `Object` | Custom options
 
 Change the default options.
 
 
-#### format(source[, callback]])
+#### format(source[, options[, callback]])
 
 - Alias: comb
 
-Params | Type | Description
------- | ---- | -----------
-source | `String` | The source text for combing,
-callback | `Function` | For example: `function (result) {}`
+Parameters          | Type       | Description
+------------------- | ---------- | --------------------------------------
+source              | `String`   | The source text for combing
+options (optional)  | `Object`   | Change the default options temporarily
+callback (optional) | `Function` | e.g: `function (result) {}`
 
 Format source HTML attributes.
 
 
+
 ## Browser Support
 
-- Chrome 36+
-- Firefox 31+
+- Chrome (latest 2)
+- Firefox (latest 2)
 - Internet Explorer 8+
-- Opera 21+
-- Safari 5.1+
+- Opera (latest 2)
+- Safari (latest 2)
 
 
-## [License](https://github.com/fengyuanchen/htmlcomb/blob/master/LICENSE.md)
 
-Released under the [MIT](http://opensource.org/licenses/mit-license.html) license.
+## [License](LICENSE.md)
+
+[MIT](http://opensource.org/licenses/MIT) © [Fengyuan Chen](http://github.com/fengyuanchen)

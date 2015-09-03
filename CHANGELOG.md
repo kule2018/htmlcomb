@@ -1,5 +1,13 @@
 # Changelog
 
+
+### 0.3.0 (Sep 3, 2015)
+
+- Add "options" parameter back to "format" method.
+- Improve the "setup" method.
+- Export static methods.
+
+
 ### 0.2.0 (Dec 12, 2014)
 
 - Supports more browsers.
