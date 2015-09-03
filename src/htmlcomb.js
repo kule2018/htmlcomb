@@ -2,7 +2,7 @@
  * HTMLComb v@VERSION
  * https://github.com/fengyuanchen/htmlcomb
  *
- * Copyright (c) 2014-2015 Fengyuan Chen
+ * Copyright (c) 2014-@YEAR Fengyuan Chen
  * Released under the MIT license
  *
  * Date: @DATE
@@ -12,26 +12,26 @@
 
   'use strict';
 
-  var HTMLComb = function (options) {
-        this.defaults = util.extend({}, HTMLComb.DEFAULTS, options);
-        this.source = '';
-        this.result = '';
-      },
+  // Patterns
+  var REGEXP_ELEMENT_TAGS = /<(\w+)\s([^<>]+)>/g;
+  var REGEXP_ELEMENT_ATTRIBUTES = /\w+(?:\-\w*)*(\=(("[^"]*")|('[^']*')|\w*))?/g;
+  var REGEXP_SINGLE_QUOTATION_MARKS = /'([^']*)'/g;
+  var REGEXP_DOUBLE_QUOTATION_MARKS = /"/g;
+  var REGEXP_EMPTY_VALUES = /^"\s*"$/;
+  var REGEXP_NEWLINES = /[\n\r]+/g;
+  var REGEXP_MULTIPLE_SPACES = /(\s)\s+/g;
 
-      // Patterns
-      REGEXP_ELEMENT_TAGS = /<(\w+)\s([^<>]+)>/g,
-      REGEXP_ELEMENT_ATTRIBUTES = /\w+(?:\-\w*)*(\=(("[^"]*")|('[^']*')|\w*))?/g,
-      REGEXP_SINGLE_QUOTATION_MARKS = /'([^']*)'/g,
-      REGEXP_DOUBLE_QUOTATION_MARKS = /"/g,
-      REGEXP_EMPTY_VALUES = /^"\s*"$/,
-      REGEXP_NEWLINES = /[\n\r]+/g,
-      REGEXP_MULTIPLE_SPACES = /(\s)\s+/g,
+  // Others
+  var array = [];
+  var slice = array.slice;
+  var toString = {}.toString;
+  var util;
 
-      // Others
-      array = [],
-      slice = array.slice,
-      toString = {}.toString,
-      util;
+  function HTMLComb(options) {
+    this.defaults = util.extend({}, HTMLComb.DEFAULTS, options);
+    this.source = '';
+    this.result = '';
+  }
 
   // Defaults
   // ---------------------------------------------------------------------------
@@ -107,12 +107,13 @@
     },
 
     sort: function (attrs) {
-      var order = this.defaults.order,
-          sortedAttrs = [],
-          matchedAttrs = [],
-          others = [];
+      var order = this.defaults.order;
+      var sortedAttrs = [];
+      var matchedAttrs = [];
+      var others = [];
 
-      attrs = this.split(attrs); // To array
+      // To array
+      attrs = this.split(attrs);
 
       util.each(attrs, function (attr) {
         var matched = false;
@@ -127,7 +128,8 @@
 
             matchedAttrs[i].push(attr);
 
-            return false; // Breaks loop
+            // Breaks loop
+            return false;
           }
         });
 
@@ -154,8 +156,8 @@
     },
 
     split: function (attrs) {
-      var defaults = this.defaults,
-          matched = [];
+      var defaults = this.defaults;
+      var matched = [];
 
       if (typeof attrs === 'string') {
 
@@ -171,13 +173,19 @@
             if (typeof attr[1] !== 'undefined') {
               firstLetter = attr[1].charAt(0);
 
-              if (firstLetter === '\'' && defaults.replaceSingleQuotationMarks) { // Replases ' to "
+
+              if (firstLetter === '\'' && defaults.replaceSingleQuotationMarks) {
+
+                // Replases ' to "
                 attr[1] = '"' + attr[1].replace(REGEXP_SINGLE_QUOTATION_MARKS, '$1').replace(REGEXP_DOUBLE_QUOTATION_MARKS, '&quot;') + '"';
-              } else if (firstLetter !== '"' && defaults.requireDoubleQuotationMarks) { // Adds "
+              } else if (firstLetter !== '"' && defaults.requireDoubleQuotationMarks) {
+
+                // Adds "
                 attr[1] = '"' + attr[1] + '"';
               }
 
-              if (defaults.removeNewlines) { // Removes newlines first
+              // Removes newlines first
+              if (defaults.removeNewlines) {
                 attr[1] = attr[1].replace(REGEXP_NEWLINES, '');
               }
 
@@ -225,8 +233,8 @@
     },
 
     each: function (obj, callback) {
-      var length,
-          i;
+      var length;
+      var i;
 
       if (typeof callback === 'function') {
         if (util.isArray(obj)) {
@@ -283,7 +291,7 @@
   util.extend(HTMLComb, util);
 
 
-  // Define and export
+  // Export
   // ---------------------------------------------------------------------------
 
   if (typeof window !== 'undefined') {
