@@ -92,7 +92,7 @@
         throw new Error('The first parameter for "format" method must be a string.');
       }
 
-      if (typeof options === 'function') {
+      if (typeof options === 'object') {
         hasOptions = true;
         this.setup(options, true);
       } else if (typeof options === 'function' && typeof callback === 'undefined') {
