@@ -4,9 +4,10 @@
   "version": "0.2.0",
   "main": "dist/htmlcomb.js",
   "keywords": [
-    "html",
-    "comb",
+    "attribute",
     "format",
+    "comb",
+    "html",
     "javascript",
     "front-end",
     "web",
