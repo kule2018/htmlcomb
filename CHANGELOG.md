@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 0.3.1 (Jun 10, 2016)
+
+- Add support for Vue.js template.
+
+
 ### 0.3.0 (Sep 3, 2015)
 
 - Add "options" parameter back to "format" method.

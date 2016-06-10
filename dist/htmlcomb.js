@@ -1,11 +1,11 @@
 /*!
- * HTMLComb v0.3.0
+ * HTMLComb v0.3.1
  * https://github.com/fengyuanchen/htmlcomb
  *
- * Copyright (c) 2014-2015 Fengyuan Chen
+ * Copyright (c) 2014-2016 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2015-09-03T08:08:10.316Z
+ * Date: 2016-06-10T05:33:56.123Z
  */
 
 (function () {
@@ -14,7 +14,7 @@
 
   // Patterns
   var REGEXP_ELEMENT_TAGS = /<(\w+)\s([^<>]+)>/g;
-  var REGEXP_ELEMENT_ATTRIBUTES = /\w+(?:\-\w*)*(\=(("[^"]*")|('[^']*')|\w*))?/g;
+  var REGEXP_ELEMENT_ATTRIBUTES = /[\-\.:@]?\w+(?:[\-\.:@]\w*)*(=(("[^"]*")|('[^']*')|\w*))?/g;
   var REGEXP_SINGLE_QUOTATION_MARKS = /'([^']*)'/g;
   var REGEXP_DOUBLE_QUOTATION_MARKS = /"/g;
   var REGEXP_EMPTY_VALUES = /^"\s*"$/;
@@ -177,7 +177,7 @@
 
       if (typeof attrs === 'string') {
 
-        // Matchs four types of attribute: attr="prop" | attr='prop' | attr=prop | attr
+        // Matches four types of attribute: attr="prop" | attr='prop' | attr=prop | attr
         matched = attrs.match(REGEXP_ELEMENT_ATTRIBUTES);
 
         if (matched) {
@@ -189,10 +189,9 @@
             if (typeof attr[1] !== 'undefined') {
               firstLetter = attr[1].charAt(0);
 
-
               if (firstLetter === '\'' && options.replaceSingleQuotationMarks) {
 
-                // Replases ' to "
+                // Replaces ' to "
                 attr[1] = '"' + attr[1].replace(REGEXP_SINGLE_QUOTATION_MARKS, '$1').replace(REGEXP_DOUBLE_QUOTATION_MARKS, '&quot;') + '"';
               } else if (firstLetter !== '"' && options.requireDoubleQuotationMarks) {
 

@@ -1,8 +1,18 @@
-# [HTMLComb](https://github.com/fengyuanchen/htmlcomb)
+# HTMLComb
 
-A simple tool for combing HTML attributes.
+> A simple tool for combing HTML attributes.
 
-- [Demo](http://fengyuanchen.github.io/htmlcomb)
+- [Website](https://fengyuanchen.github.io/htmlcomb)
+
+
+
+## Main
+
+```
+dist/
+├── htmlcomb.js      (8 KB)
+└── htmlcomb.min.js  (4 KB)
+```
 
 
 
@@ -206,16 +216,23 @@ Format source HTML attributes.
 
 
 
-## Browser Support
+## Browser support
 
-- Chrome (latest 2)
-- Firefox (latest 2)
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Opera (latest)
+- Edge (latest)
 - Internet Explorer 8+
-- Opera (latest 2)
-- Safari (latest 2)
 
 
 
-## [License](LICENSE.md)
+## Versioning
 
-[MIT](http://opensource.org/licenses/MIT) © [Fengyuan Chen](http://github.com/fengyuanchen)
+Maintained under the [Semantic Versioning guidelines](http://semver.org/).
+
+
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT) © [Fengyuan Chen](http://chenfengyuan.com)

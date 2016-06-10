@@ -1,8 +1,15 @@
 {
   "name": "htmlcomb",
   "description": "A simple tool for combing HTML attributes.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "dist/htmlcomb.js",
+  "license": "MIT",
+  "repository": "fengyuanchen/distpicker",
+  "homepage": "http://fengyuanchen.github.io/distpicker",
+  "author": {
+    "name": "Fengyuan Chen",
+    "url": "http://chenfengyuan.com"
+  },
   "keywords": [
     "attribute",
     "format",
@@ -13,32 +20,19 @@
     "web",
     "development"
   ],
-  "author": {
-    "name": "Fengyuan Chen",
-    "url": "https://github.com/fengyuanchen"
-  },
-  "homepage": "https://github.com/fengyuanchen/htmlcomb",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fengyuanchen/htmlcomb.git"
-  },
-  "bugs": {
-    "url": "https://github.com/fengyuanchen/htmlcomb/issues"
-  },
-  "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-copy": "~0.8.1",
-    "grunt-contrib-csslint": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.13.0",
-    "grunt-contrib-htmlmin": "~0.4.0",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.9.2",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-jscs": "~2.1.0",
-    "grunt-replace": "~0.10.2",
-    "load-grunt-tasks": "~3.2.0"
+    "grunt": "~1.0.1",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-csslint": "~1.0.0",
+    "grunt-contrib-cssmin": "~1.0.1",
+    "grunt-contrib-htmlmin": "~1.4.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "~1.0.0",
+    "grunt-contrib-uglify": "~1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-jscs": "~3.0.0",
+    "grunt-replace": "~1.0.1",
+    "load-grunt-tasks": "~3.5.0"
   }
 }
