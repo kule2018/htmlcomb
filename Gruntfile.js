@@ -35,8 +35,8 @@ module.exports = function (grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       },
       site: {
-        src: 'docs/js/docs.js',
-        dest: '_gh_pages/js/docs.js'
+        src: 'docs/js/main.js',
+        dest: '_gh_pages/js/main.js'
       }
     },
 
@@ -54,8 +54,8 @@ module.exports = function (grunt) {
         noAdvanced: true
       },
       dist: {
-        src: 'docs/css/docs.css',
-        dest: '_gh_pages/css/docs.css'
+        src: 'docs/css/main.css',
+        dest: '_gh_pages/css/main.css'
       }
     },
 
