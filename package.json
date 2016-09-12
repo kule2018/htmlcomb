@@ -4,8 +4,8 @@
   "version": "0.3.1",
   "main": "dist/htmlcomb.js",
   "license": "MIT",
-  "repository": "fengyuanchen/distpicker",
-  "homepage": "http://fengyuanchen.github.io/distpicker",
+  "repository": "fengyuanchen/htmlcomb",
+  "homepage": "http://fengyuanchen.github.io/htmlcomb",
   "author": {
     "name": "Fengyuan Chen",
     "url": "http://chenfengyuan.com"
